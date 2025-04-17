@@ -72,19 +72,17 @@ class _Section extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-  children: [
-    Icon(
-  icon,
-  color: Theme.of(context).textTheme.bodyMedium?.color,
-), 
-    const SizedBox(width: 8),
-    Text(
-      title,
-      style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
-    ),
-  ],
-)
-,
+            children: [
+              Icon(icon, color: Theme.of(context).textTheme.bodyMedium?.color),
+              const SizedBox(width: 8),
+              Text(
+                title,
+                style: textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
           const SizedBox(height: 4),
           Text(content, style: textTheme.bodyMedium),
         ],

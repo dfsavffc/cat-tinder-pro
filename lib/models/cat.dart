@@ -1,24 +1,14 @@
-
-
-
-
 class Cat {
-  
   final String imageUrl;
 
-  
   final String breedName;
 
-  
   final String description;
 
-  
   final String temperament;
 
-  
   final String origin;
 
-  
   const Cat({
     required this.imageUrl,
     required this.breedName,
@@ -27,8 +17,6 @@ class Cat {
     required this.origin,
   });
 
-  
-  
   factory Cat.fromJson(Map<String, dynamic> json) {
     try {
       final breed =
@@ -50,7 +38,6 @@ class Cat {
     }
   }
 
-  
   static String _getValue(
     Map<String, dynamic> map,
     String key,
@@ -60,7 +47,6 @@ class Cat {
     return (value is String && value.isNotEmpty) ? value : fallback;
   }
 
-  
   Map<String, dynamic> toJson() => {
     'url': imageUrl,
     'breeds': [

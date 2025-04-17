@@ -10,7 +10,7 @@ class LoadingIndicator extends StatelessWidget {
       child: Center(
         child: Image.asset(
           'assets/images/loading_cat.png',
-          width: 160, 
+          width: 160,
           height: 160,
           fit: BoxFit.contain,
         ),

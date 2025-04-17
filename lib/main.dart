@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
     title: 'Cat Tinder',
-    theme: _dark ? AppTheme.dark : AppTheme.light, 
+    theme: _dark ? AppTheme.dark : AppTheme.light,
     home: MainScreen(onToggleTheme: () => setState(() => _dark = !_dark)),
   );
 }

@@ -30,7 +30,6 @@ class CatCard extends StatelessWidget {
                 showLoader ? const LoadingIndicator() : const SizedBox.shrink(),
         errorWidget: (_, __, ___) => const Icon(Icons.error, size: 40),
         imageBuilder: (_, image) {
-          
           WidgetsBinding.instance.addPostFrameCallback((_) => onImageLoaded());
           return GestureDetector(
             onTap:

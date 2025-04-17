@@ -13,8 +13,7 @@ class LikedCatsScreen extends StatefulWidget {
 }
 
 class _LikedCatsScreenState extends State<LikedCatsScreen> {
-  String? _selectedBreed;                      
-
+  String? _selectedBreed;
 
   @override
   Widget build(BuildContext context) {
@@ -23,21 +22,23 @@ class _LikedCatsScreenState extends State<LikedCatsScreen> {
 
       body: Consumer<CatController>(
         builder: (_, c, __) {
-          final breeds = {
-            for (final l in c.likedCats) l.cat.breedName,
-          }.toList()
-            ..sort();
+          final breeds =
+              {for (final l in c.likedCats) l.cat.breedName}.toList()..sort();
 
-          
           if (_selectedBreed != null && !breeds.contains(_selectedBreed)) {
             _selectedBreed = null;
           }
 
-          final items = c.likedCats
-              .where((l) => _selectedBreed == null || l.cat.breedName == _selectedBreed)
-              .toList()
-              .reversed
-              .toList();
+          final items =
+              c.likedCats
+                  .where(
+                    (l) =>
+                        _selectedBreed == null ||
+                        l.cat.breedName == _selectedBreed,
+                  )
+                  .toList()
+                  .reversed
+                  .toList();
 
           return Column(
             children: [
@@ -49,21 +50,25 @@ class _LikedCatsScreenState extends State<LikedCatsScreen> {
                     hint: const Text('Все породы'),
                     isExpanded: true,
                     items: [
-                      const DropdownMenuItem(value: null, child: Text('Все породы')),
-                      ...breeds.map((b) =>
-                          DropdownMenuItem(value: b, child: Text(b))),
+                      const DropdownMenuItem(
+                        value: null,
+                        child: Text('Все породы'),
+                      ),
+                      ...breeds.map(
+                        (b) => DropdownMenuItem(value: b, child: Text(b)),
+                      ),
                     ],
                     onChanged: (v) => setState(() => _selectedBreed = v),
                   ),
                 ),
               Expanded(
-                child: items.isEmpty
-                    ? const Center(child: Text('Нет лайкнутых котиков'))
-                    : ListView.builder(
-                        itemCount: items.length,
-                        itemBuilder: (_, i) =>
-                            _LikedTile(liked: items[i]),
-                      ),
+                child:
+                    items.isEmpty
+                        ? const Center(child: Text('Нет лайкнутых котиков'))
+                        : ListView.builder(
+                          itemCount: items.length,
+                          itemBuilder: (_, i) => _LikedTile(liked: items[i]),
+                        ),
               ),
             ],
           );
@@ -83,15 +88,12 @@ class _LikedTile extends StatelessWidget {
 
     return Dismissible(
       key: ValueKey('${liked.cat.imageUrl}_${liked.likedAt}'),
-      direction: DismissDirection.endToStart,                 
+      direction: DismissDirection.endToStart,
       background: Container(
-        alignment: Alignment.centerRight,                    
+        alignment: Alignment.centerRight,
         padding: const EdgeInsets.only(right: 24),
         decoration: BoxDecoration(
-          color: Theme.of(context)
-              .colorScheme
-              .error
-              .withAlpha(102),                               
+          color: Theme.of(context).colorScheme.error.withAlpha(102),
           borderRadius: BorderRadius.circular(16),
         ),
         child: const Icon(Icons.delete, size: 28),
@@ -115,7 +117,7 @@ class _LikedTile extends StatelessWidget {
           ),
           title: Text(
             liked.cat.breedName,
-            style: Theme.of(context).textTheme.titleMedium,  
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           subtitle: Text(
             '${liked.likedAt.day.toString().padLeft(2, "0")}.'
@@ -123,9 +125,9 @@ class _LikedTile extends StatelessWidget {
             '${liked.likedAt.year} '
             '${liked.likedAt.hour.toString().padLeft(2, "0")}:'
             '${liked.likedAt.minute.toString().padLeft(2, "0")}',
-            style: Theme.of(context).textTheme.bodySmall,     
+            style: Theme.of(context).textTheme.bodySmall,
           ),
-          
+
           trailing: IconButton(
             icon: const Icon(Icons.delete),
             onPressed: () => c.removeLikedCat(liked),
